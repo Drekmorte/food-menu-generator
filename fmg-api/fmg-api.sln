@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fmg-api", "fmg-api\fmg-api.csproj", "{ABDD8E4D-D0F5-4583-A8FC-A1C92175E95E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABDD8E4D-D0F5-4583-A8FC-A1C92175E95E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDD8E4D-D0F5-4583-A8FC-A1C92175E95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDD8E4D-D0F5-4583-A8FC-A1C92175E95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDD8E4D-D0F5-4583-A8FC-A1C92175E95E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26ED591B-4E18-4FA4-A349-157C4FEBE170}
+	EndGlobalSection
+EndGlobal

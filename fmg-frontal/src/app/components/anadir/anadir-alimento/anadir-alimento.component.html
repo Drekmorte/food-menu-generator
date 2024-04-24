@@ -1,0 +1,86 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Nombre del alimento</label>
+                    <input formControlName="nombre" class="form-control" placeholder="Introduce tu nombre" />
+                </label>
+            </div>
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Tipo de alimento</label>
+                    <select formControlName="tipoAlimento" class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Calorías</label>
+                    <input formControlName="calorias" type="number" class="form-control" placeholder="Introduce las calorías" />
+                </label>
+            </div>
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Proteinas</label>
+                    <input formControlName="proteinas" type="number" class="form-control" placeholder="Introduce las proteínas" />
+                </label>
+            </div>
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Hidratos</label>
+                    <input formControlName="hidratos" type="number" class="form-control" placeholder="Introduce las hidratos" />
+                </label>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-top: 20px;">
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Grasa</label>
+                    <input formControlName="grasas" type="number" class="form-control" placeholder="Introduce las grasas" />
+                </label>
+            </div>
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Fibra</label>
+                    <input formControlName="fibra" type="number" class="form-control" placeholder="Introduce la fibra" />
+                </label>
+            </div>
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Sal</label>
+                    <input formControlName="sal" type="number" class="form-control" placeholder="Introduce la sal" />
+                </label>
+            </div>
+
+            <div class="col-sm-2">
+                <label>
+                    <label class="form-label">Gramos</label>
+                    <input formControlName="gramos" type="number" class="form-control" placeholder="Gramos por cada 100g" />
+                </label>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-top: 20px;">
+            <div class="col">
+                <button type="submit" class="btn btn-primary boton-enviar" [disabled]="!formulario.valid">Enviar</button>
+            </div>
+        </div>
+    </div>
+</form>
