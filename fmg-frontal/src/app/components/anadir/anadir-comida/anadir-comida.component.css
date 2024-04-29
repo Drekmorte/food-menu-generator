@@ -1,0 +1,28 @@
+.container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+
+  td,
+  th {
+    vertical-align: middle;
+  }
+}
+
+.radio-buttons {
+  margin-right: 5px;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+.no-border {
+  border: 0;
+  box-shadow: none; 
+}

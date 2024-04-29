@@ -40,6 +40,7 @@ export class AnadirAlimentoComponent implements OnInit {
     });
   }
 
+  // TODO
   onSubmit(form: FormGroup) {
     if (form.valid) {
       const nuevoAlimento: AnadirAlimento = AnadirAlimentoHelper.toApi(form);

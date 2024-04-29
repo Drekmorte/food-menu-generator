@@ -11,13 +11,13 @@ body {
     font-size: 14px !important;
 }
 
-.boton-enviar {
+.boton-guardar {
     background-color: #65a3e6; 
     border-color: #65a3e6;
     font-size: 14px;
 }
 
-.boton-enviar:hover {
+.boton-guardar:hover {
     background-color: #378be6;
     border-color: #378be6;
     /* #4e97e6 */
