@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 // TODO: QUITAR
-import { MOCK_ALIMENTOS } from '../../../shared/constants/mockConstants';
+import { MOCK_ingredienteS } from '../../../shared/constants/mockConstants';
 
 @Component({
   selector: 'app-listar-comida',
@@ -14,5 +14,5 @@ export class ListarComidaComponent {
 
   
   // TODO: quitar
-  mockAlimentos = MOCK_ALIMENTOS;
+  mockingredientes = MOCK_ingredienteS;
 }

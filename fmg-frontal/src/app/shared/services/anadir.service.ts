@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
-import { AnadirAlimento } from '../models/anadir-alimento.interface';
+import { AnadirIngrediente } from '../models/anadir-ingrediente.interface';
+import { AnadirComida } from '../models/anadir-comida.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,24 @@ export class AnadirService {
 
   private urlBase : string = 'https://localhost:7208/';
 
-  private urlAlimento : string = 'WeatherForecast';
+  private urlingrediente : string = 'WeatherForecast';
 
   constructor(private http: HttpClient) {
 
   }
 
-  public postAnadirAlimento(form: AnadirAlimento): Observable<any> {
-    return this.http.post(this.urlBase + this.urlAlimento, form).pipe(
+  public postAnadirIngrediente(form: AnadirIngrediente): Observable<any> {
+    return this.http.post(this.urlBase + this.urlingrediente, form).pipe(
+      catchError(error => {
+        return of(error);
+      }),
+      map((fullResponse: HttpResponse<Object> | HttpErrorResponse) => {
+        return fullResponse;
+      }));
+  }
+
+  public postAnadirComida(form: AnadirComida): Observable<any> {
+    return this.http.post(this.urlBase + this.urlingrediente, form).pipe(
       catchError(error => {
         return of(error);
       }),

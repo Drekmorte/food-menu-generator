@@ -17,18 +17,18 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Nombre alimento</th>
+                            <th scope="col">Nombre ingrediente</th>
                             <th scope="col">Cantidad</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- TODO: bucle -->
-                        <ng-container *ngFor="let alimento of mockAlimentos">
+                        <ng-container *ngFor="let ingrediente of mockingredientes">
                             <tr>
                             <td class="vertical-align-middle">
                                 <div class="custom-control custom-checkbox" style="text-align:middle">
                                     <input type="checkbox" class="custom-control-input radio-buttons" id="customCheck1" checked>
-                                    <label class="custom-control-label" for="customCheck1"> {{ alimento.nombre }}</label>
+                                    <label class="custom-control-label" for="customCheck1"> {{ ingrediente.nombre }}</label>
                                 </div>
                             </td>
                             <td><input type="number" formControlName="cantidad" maxlength="2" class="form-control no-border" placeholder="Introduce la cantidad" /></td>

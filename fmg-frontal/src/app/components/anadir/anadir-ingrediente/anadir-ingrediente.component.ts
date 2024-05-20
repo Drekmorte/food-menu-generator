@@ -4,17 +4,17 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Subscription } from 'rxjs';
 import { AnadirService } from '../../../shared/services/anadir.service';
 import { HttpClientModule, HttpResponse } from '@angular/common/http';
-import { AnadirAlimento, AnadirAlimentoHelper } from '../../../shared/models/anadir-alimento.interface';
+import { AnadirIngrediente, AnadirIngredienteHelper } from '../../../shared/models/anadir-ingrediente.interface';
 import { AlertsService } from '../../../shared/services/alerts.service';
 
 @Component({
-  selector: 'app-anadir-alimento',
+  selector: 'app-anadir-ingrediente',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
-  templateUrl: './anadir-alimento.component.html',
-  styleUrl: './anadir-alimento.component.css'
+  templateUrl: './anadir-ingrediente.component.html',
+  styleUrl: './anadir-ingrediente.component.css'
 })
-export class AnadirAlimentoComponent implements OnInit {
+export class AnadirIngredienteComponent implements OnInit {
 
   formulario: FormGroup;
   public $subscription: Subscription;
@@ -28,8 +28,8 @@ export class AnadirAlimentoComponent implements OnInit {
 
   ngOnInit() {
     this.formulario = this.fb.group({
-      nombre: ['', Validators.required],
-      tipoAlimento: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      tipoingrediente: ['', Validators.required],
       calorias: ['', Validators.required],
       proteinas: ['', Validators.required],
       hidratos: ['', Validators.required],
@@ -43,17 +43,17 @@ export class AnadirAlimentoComponent implements OnInit {
   // TODO
   onSubmit(form: FormGroup) {
     if (form.valid) {
-      const nuevoAlimento: AnadirAlimento = AnadirAlimentoHelper.toApi(form);
+      const nuevoingrediente: AnadirIngrediente = AnadirIngredienteHelper.toApi(form);
 
-      this.$subscription = this.anadirService.postAnadirAlimento(nuevoAlimento).subscribe(
+      this.$subscription = this.anadirService.postAnadirIngrediente(nuevoingrediente).subscribe(
         (response: HttpResponse<any>) => {
           if (response)
             console.log(response);
-            this.alertsService.showSuccess("Alimento añadido");
+            this.alertsService.showSuccess("ingrediente añadido");
         },
         (error) => {
           console.log(error);
-          this.alertsService.showError(error, "Ha habido un error al añadir el alimento");
+          this.alertsService.showError(error, "Ha habido un error al añadir el ingrediente");
         }
       );
     }

@@ -1,8 +1,8 @@
 import { FormGroup } from "@angular/forms";
 
-export interface AnadirAlimento {
+export interface AnadirIngrediente {
     nombre: string;
-    tipoAlimento: number;
+    tipoingrediente: number;
     calorías: number;
     proteinas: number;
     hidratos: number;
@@ -12,13 +12,13 @@ export interface AnadirAlimento {
     gramos: number;
 }
 
-export class AnadirAlimentoHelper {
+export class AnadirIngredienteHelper {
 
-    // static default() : AnadirAlimento 
+    // static default() : Anadiringrediente 
     // {
     //     return {
     //         nombre: '',
-    //         tipoAlimento: 0,
+    //         tipoingrediente: 0,
     //         calorías: 0,
     //         proteinas: 0,
     //         hidratos: 0,
@@ -29,10 +29,10 @@ export class AnadirAlimentoHelper {
     //     }
     // }
 
-    static toApi(form: FormGroup) : AnadirAlimento {
+    static toApi(form: FormGroup) : AnadirIngrediente {
         return {
             nombre: form.value.nombre,
-            tipoAlimento: form.value.tipoAlimento,
+            tipoingrediente: form.value.tipoingrediente,
             calorías: form.value.calorias,
             proteinas: form.value.proteinas,
             hidratos: form.value.hidratos,

@@ -1,12 +1,11 @@
-<form [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)">
+<form (ngSubmit)="onSubmit()">
 
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <label>
                     <label class="form-label">Nombre de la comida</label>
-                    <input formControlName="nombre" class="form-control"
-                        placeholder="Introduce el nombre de la comida" />
+                    <input class="form-control" [(ngModel)] = "nombreComida" [ngModelOptions]="{standalone: true}" placeholder="Introduce el nombre de la comida" />
                 </label>
             </div>
         </div>
@@ -17,31 +16,36 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Nombre alimento</th>
+                            <th scope="col">Nombre ingrediente</th>
                             <th scope="col">Cantidad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- TODO: bucle -->
-                        <ng-container *ngFor="let alimento of mockAlimentos">
-                            <tr>
+                        <tr *ngFor="let row of tableRows; index as i">
                             <td class="vertical-align-middle">
                                 <div class="custom-control custom-checkbox" style="text-align:middle">
-                                    <input type="checkbox" class="custom-control-input radio-buttons" id="customCheck1" checked>
-                                    <label class="custom-control-label" for="customCheck1"> {{ alimento.nombre }}</label>
+                                    <select class="form-select no-border" aria-label="Selecciona el ingrediente" (change)="onSelectChange($event, i)" (blur)="onSelectChange($event, i)">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </div>
                             </td>
-                            <td><input type="number" formControlName="cantidad" maxlength="2" class="form-control no-border" placeholder="Introduce la cantidad" /></td>
+                            <td>
+                                <input type="number" maxlength="2" class="form-control no-border" placeholder="Introduce la cantidad" (change)="onInputChange($event, i)" (blur)="onInputChange($event, i)" />
+                            </td>
                         </tr>
-                        </ng-container>
                     </tbody>
                 </table>
+
+                <button (click)="addRow()">Añadir Fila</button>
+
             </div>
 
             <div class="row" style="padding-top: 20px;">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary boton-guardar"
-                        [disabled]="!formulario.valid">Guardar</button>
+                    <button type="submit" class="btn btn-primary boton-guardar" [disabled]="!formularioValidado">Guardar</button>
                 </div>
             </div>
         </div>

@@ -1,3 +1,3 @@
-import AlimentosMock from '../../mocks/anadir-comida.mock.json';
+import ingredientesMock from '../../mocks/anadir-comida.mock.json';
 
-export const MOCK_ALIMENTOS = AlimentosMock;
+export const MOCK_ingredienteS = ingredientesMock;
