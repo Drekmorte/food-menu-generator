@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AnadirService } from '../../../shared/services/anadir.service';
 import { AlertsService } from '../../../shared/services/alerts.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpResponse } from '@angular/common/http';
-import { IngredienteCantidad } from '../../../shared/models/ingrediente-cantidad.interface';
-import { AnadirIngredienteHelper } from '../../../shared/models/anadir-ingrediente.interface';
-import { AnadirComida, AnadirComidaHelper } from '../../../shared/models/anadir-comida.interface';
+import { IngredienteCantidad } from '../../../shared/models/ingrediente-cantidad';
+import { AnadirComida, AnadirComidaHelper } from '../../../shared/models/anadir-comida';
 
 @Component({
   selector: 'app-anadir-comida',
@@ -20,11 +19,10 @@ export class AnadirComidaComponent implements OnInit {
 
   public $subscription: Subscription;
   nombreComida: string = "";
-  tableRows: IngredienteCantidad[] = [];
+  listaIngredientes: IngredienteCantidad[] = [];
   formularioValidado: boolean;
 
-  constructor(private fb: FormBuilder,
-    private anadirService: AnadirService,
+  constructor(private anadirService: AnadirService,
     private alertsService: AlertsService) 
   {
     this.$subscription = Subscription.EMPTY;
@@ -37,19 +35,19 @@ export class AnadirComidaComponent implements OnInit {
 
   onSubmit() {
     if (this.formularioValidado) {
-      // const nuevaComida: AnadirComida = AnadirComidaHelper.toApi(form);
+      const nuevaComida: AnadirComida = AnadirComidaHelper.toApi(this.nombreComida, this.listaIngredientes);
 
-      // this.$subscription = this.anadirService.postAnadirComida(nuevaComida).subscribe(
-      //   (response: HttpResponse<any>) => {
-      //     if (response)
-      //       console.log(response);
-      //       this.alertsService.showSuccess("ingrediente añadido");
-      //   },
-      //   (error) => {
-      //     console.log(error);
-      //     this.alertsService.showError(error, "Ha habido un error al añadir el ingrediente");
-      //   }
-      // );
+      this.$subscription = this.anadirService.postAnadirComida(nuevaComida).subscribe(
+        (response: HttpResponse<any>) => {
+          if (response)
+            console.log(response);
+          this.alertsService.showSuccess("ingrediente añadido");
+        },
+        (error) => {
+          console.log(error);
+          this.alertsService.showError(error, "Ha habido un error al añadir el ingrediente");
+        }
+      );
     }
     else {
       console.log("El formulario no es válido");
@@ -57,7 +55,7 @@ export class AnadirComidaComponent implements OnInit {
   }
 
   addRow() {
-    this.tableRows.push({ ingrediente: '', cantidad: 0 });
+    this.listaIngredientes.push({ ingrediente: '', unidades: 0 });
     this.validarFormulario();
   }
 
@@ -65,7 +63,7 @@ export class AnadirComidaComponent implements OnInit {
     const data = event?.target?.value;
 
     if (data) {
-      this.tableRows[index].ingrediente = data;
+      this.listaIngredientes[index].ingrediente = data;
       this.validarFormulario();
     }
   }
@@ -73,25 +71,25 @@ export class AnadirComidaComponent implements OnInit {
   onInputChange(event: any, index: number) {
     const data = event?.target?.value;
 
-    this.tableRows[index].cantidad = data;
+    this.listaIngredientes[index].unidades = data;
 
     this.validarFormulario();
   }
 
   validarFormulario() {
-    this.formularioValidado = this.nombreComida && this.validarTablaIngredientes(this.tableRows) ?
-    true :
-    false;
+    this.formularioValidado = this.nombreComida && this.validarTablaIngredientes(this.listaIngredientes) ?
+      true :
+      false;
   }
 
-  validarTablaIngredientes(tableRows: IngredienteCantidad[]) : boolean {
+  validarTablaIngredientes(tableRows: IngredienteCantidad[]): boolean {
     for (const row of tableRows) {
-      if (row.ingrediente == '' || row.cantidad == 0) {
+      if (row.ingrediente == '' || row.unidades == 0) {
         return false;
       }
     }
     return true;
-  } 
+  }
 
 }
 

@@ -1,49 +1,90 @@
-<form [formGroup]="formulario" (ngSubmit)="onSubmit(formulario)">
+<div class="container">
+    <div class="row">
+        <div class="col-12">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <label>
-                    <label class="form-label">Nombre de la comida</label>
-                    <input formControlName="nombre" class="form-control"
-                        placeholder="Introduce el nombre de la comida" />
-                </label>
-            </div>
-        </div>
-
-        <div class="row" style="padding-top: 20px;">
-
-            <div class="col-4">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nombre ingrediente</th>
-                            <th scope="col">Cantidad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- TODO: bucle -->
-                        <ng-container *ngFor="let ingrediente of mockingredientes">
-                            <tr>
-                            <td class="vertical-align-middle">
-                                <div class="custom-control custom-checkbox" style="text-align:middle">
-                                    <input type="checkbox" class="custom-control-input radio-buttons" id="customCheck1" checked>
-                                    <label class="custom-control-label" for="customCheck1"> {{ ingrediente.nombre }}</label>
-                                </div>
-                            </td>
-                            <td><input type="number" formControlName="cantidad" maxlength="2" class="form-control no-border" placeholder="Introduce la cantidad" /></td>
-                        </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="row" style="padding-top: 20px;">
-                <div class="col">
-                    <button type="submit" class="btn btn-primary boton-guardar"
-                        [disabled]="!formulario.valid">Guardar</button>
-                </div>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="cabecera">
+                        <th>Nombre</th>
+                        <th>Ingredientes</th>
+                        <th>Macros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let comida of listaComidas; index as i">
+                        <td>
+                            {{ comida.nombre }}
+                        </td>
+                        <td>
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Unidades</th>
+                                        <th scope="col">Cal. por 100g</th>
+                                        <th scope="col">Prot. por 100g</th>
+                                        <th scope="col">Hid. por 100g</th>
+                                        <th scope="col">Grasas por 100g</th>
+                                        <th scope="col">Fibra</th>
+                                        <th scope="col">Sal</th>
+                                        <th scope="col">Gramos</th>
+                                        <th scope="col">Total calorías</th>
+                                        <th scope="col">Total proteínas</th>
+                                        <th scope="col">Total grasas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ingrediente of comida.ingredientes; index as i">
+                                        <td>{{ingrediente.nombre}}</td>
+                                        <td>{{ingrediente.unidades}}</td>
+                                        <td>{{ingrediente.calorias}}</td>
+                                        <td>{{ingrediente.proteinas}}</td>
+                                        <td>{{ingrediente.hidratos}}</td>
+                                        <td>{{ingrediente.grasas}}</td>
+                                        <td>{{ingrediente.fibra}}</td>
+                                        <td>{{ingrediente.sal}}</td>
+                                        <td>{{ingrediente.gramos}}</td>
+                                        <td>{{ingrediente.totalCalorias}}</td>
+                                        <td>{{ingrediente.totalProteinas}}</td>
+                                        <td>{{ingrediente.totalGrasas}}</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td>Huevos</td>
+                                        <td>3</td>
+                                        <td>150.0</td>
+                                        <td>12.5</td>
+                                        <td>65.0</td>
+                                        <td>8.1</td>
+                                        <td>292.5</td>
+                                        <td>24.4</td>
+                                        <td>24.4</td>
+                                        <td>8.1</td>
+                                        <td>292.5</td>
+                                        <td>24.4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Otra cosa</td>
+                                        <td>3</td>
+                                        <td>150.0</td>
+                                        <td>12.5</td>
+                                        <td>65.0</td>
+                                        <td>8.1</td>
+                                        <td>292.5</td>
+                                        <td>24.4</td>
+                                        <td>24.4</td>
+                                        <td>8.1</td>
+                                        <td>292.5</td>
+                                        <td>24.4</td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            Macros
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</form>
+</div>

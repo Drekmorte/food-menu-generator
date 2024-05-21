@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
-import { AnadirIngrediente } from '../models/anadir-ingrediente.interface';
-import { AnadirComida } from '../models/anadir-comida.interface';
+import { AnadirIngrediente } from '../models/anadir-ingrediente';
+import { AnadirComida } from '../models/anadir-comida';
 
 @Injectable({
   providedIn: 'root'

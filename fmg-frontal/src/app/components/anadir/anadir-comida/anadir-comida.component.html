@@ -21,7 +21,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let row of tableRows; index as i">
+                        <tr *ngFor="let row of listaIngredientes; index as i">
                             <td class="vertical-align-middle">
                                 <div class="custom-control custom-checkbox" style="text-align:middle">
                                     <select class="form-select no-border" aria-label="Selecciona el ingrediente" (change)="onSelectChange($event, i)" (blur)="onSelectChange($event, i)">

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Subscription } from 'rxjs';
 import { AnadirService } from '../../../shared/services/anadir.service';
 import { HttpClientModule, HttpResponse } from '@angular/common/http';
-import { AnadirIngrediente, AnadirIngredienteHelper } from '../../../shared/models/anadir-ingrediente.interface';
+import { AnadirIngrediente, AnadirIngredienteHelper } from '../../../shared/models/anadir-ingrediente';
 import { AlertsService } from '../../../shared/services/alerts.service';
 
 @Component({
