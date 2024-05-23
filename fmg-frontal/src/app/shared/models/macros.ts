@@ -1,5 +1,5 @@
 export interface Macros {
     proteinas: number;
-    carbohidratos: number;
+    hidratos: number;
     grasas: number;
 }

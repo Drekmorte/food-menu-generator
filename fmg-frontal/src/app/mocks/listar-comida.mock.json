@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "nombre": "Tostadas con crema de cacahuete",
         "ingredientes": [{
             "nombre": "Crema de cacahuete",
@@ -30,10 +30,47 @@
             "totalProteinas": 4.5,
             "totalGrasas": 6.0
         }], 
-        "macros": [{
+        "macros": {
             "proteinas": 14.5,
-            "carbohidratos": 12.0,
+            "hidratos": 12.0,
             "grasas": 54.5
-        }]
+        }
+    },
+    {
+        "id": "2",
+        "nombre": "Macarrones",
+        "ingredientes": [{
+            "nombre": "Macarrón",
+            "unidades": 1,
+            "calorias": 618.0,
+            "proteinas": 30.0,
+            "hidratos": 20.0,
+            "grasas": 6.0,
+            "fibra": 6.0,
+            "sal": 6.0,
+            "gramos": 100.0,
+            "totalCalorias": 6.0,
+            "totalProteinas": 40.0,
+            "totalGrasas": 6.0
+        },
+        {
+            "nombre": "Ternera",
+            "unidades": 2,
+            "calorias": 242.0,
+            "proteinas": 8.1,
+            "hidratos": 28.0,
+            "grasas": 6.0,
+            "fibra": 6.0,
+            "sal": 6.0,
+            "gramos": 6.0,
+            "totalCalorias": 135.5,
+            "totalProteinas": 4.5,
+            "totalGrasas": 6.0
+        }], 
+        "macros": {
+            "proteinas": 7.5,
+            "hidratos": 12.0,
+            "grasas": 10.5
+        }
     }
 ]

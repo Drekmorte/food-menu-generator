@@ -28,8 +28,6 @@ export class ListarComidaComponent implements OnInit {
     this.listaComidas = [];
     this.$subscription = Subscription.EMPTY;
     this.mock_GetComidas = MOCK_ListarComidas;
-
-  
   }
 
   ngOnInit() {
@@ -42,11 +40,10 @@ export class ListarComidaComponent implements OnInit {
   }
 
   getComidas() {
-
     this.$subscription = this.listarService.getComidas().subscribe(
       (response: HttpResponse<any>) => {
         if (response)
-          console.log(response);
+          this.listaComidas = response.body;
       },
       (error) => {
         console.log(error);

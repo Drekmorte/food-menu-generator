@@ -48,39 +48,15 @@
                                         <td>{{ingrediente.totalProteinas}}</td>
                                         <td>{{ingrediente.totalGrasas}}</td>
                                     </tr>
-                                    <!-- <tr>
-                                        <td>Huevos</td>
-                                        <td>3</td>
-                                        <td>150.0</td>
-                                        <td>12.5</td>
-                                        <td>65.0</td>
-                                        <td>8.1</td>
-                                        <td>292.5</td>
-                                        <td>24.4</td>
-                                        <td>24.4</td>
-                                        <td>8.1</td>
-                                        <td>292.5</td>
-                                        <td>24.4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Otra cosa</td>
-                                        <td>3</td>
-                                        <td>150.0</td>
-                                        <td>12.5</td>
-                                        <td>65.0</td>
-                                        <td>8.1</td>
-                                        <td>292.5</td>
-                                        <td>24.4</td>
-                                        <td>24.4</td>
-                                        <td>8.1</td>
-                                        <td>292.5</td>
-                                        <td>24.4</td>
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </td>
                         <td>
-                            <app-pie-chart></app-pie-chart>
+                            <app-pie-chart 
+                            [idComida]="comida.id"
+                            [proteina]="comida.macros.proteinas"
+                            [hidratos]="comida.macros.hidratos"
+                            [grasas]="comida.macros.grasas"></app-pie-chart>
                         </td>
                     </tr>
                 </tbody>

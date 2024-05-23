@@ -2,9 +2,9 @@ import { ListaIngredientesComida } from "./lista-ingredientes-comida";
 import { Macros } from "./macros";
 
 export interface ListarComida {
-    id: number;
+    id: string;
     nombre: string;
     ingredientes: ListaIngredientesComida[];
-    macros: Macros[]
+    macros: Macros
 }
 
