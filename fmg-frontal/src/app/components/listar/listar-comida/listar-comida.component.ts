@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ListarComida } from '../../../shared/models/listar-comida';
+import { Comida } from '../../../shared/models/comida';
 import { Subscription } from 'rxjs';
 import { ListarService } from '../../../shared/services/listar.service';
 import { HttpResponse } from '@angular/common/http';
@@ -18,16 +18,12 @@ export class ListarComidaComponent implements OnInit {
 
   public $subscription: Subscription;
 
-  listaComidas : ListarComida[];
-
-  // TODO: borrar
-  mock_GetComidas: ListarComida[];
+  listaComidas : Comida[];
   
   constructor(private listarService: ListarService) 
   {
     this.listaComidas = [];
     this.$subscription = Subscription.EMPTY;
-    this.mock_GetComidas = MOCK_ListarComidas;
   }
 
   ngOnInit() {
@@ -35,8 +31,9 @@ export class ListarComidaComponent implements OnInit {
     this.listaComidas = this.getComidasMock();
   }
 
+  // TODO: borrar
   getComidasMock() {
-    return this.mock_GetComidas;
+    return MOCK_ListarComidas;
   }
 
   getComidas() {

@@ -25,5 +25,15 @@ export class ListarService {
       }));
   }
 
+  public getIngredientes(): Observable<any> {
+    return this.http.get(this.urlBase + this.urlingrediente).pipe(
+      catchError(error => {
+        return of(error);
+      }),
+      map((fullResponse: HttpResponse<Object> | HttpErrorResponse) => {
+        return fullResponse;
+      }));
+  }
+
 
 }

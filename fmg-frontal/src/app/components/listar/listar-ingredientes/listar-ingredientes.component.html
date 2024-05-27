@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="cabecera">
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Calorías</th>
+                        <th>Proteínas</th>
+                        <th>Hidratos</th>
+                        <th>Grasas</th>
+                        <th>Fibra</th>
+                        <th>Sal</th>
+                        <th>Gramos</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ingrediente of listaIngredientes">
+                        <td>{{ingrediente.nombre}}</td>
+                        <td>{{ingrediente.tipoAlimento}}</td>
+                        <td>{{ingrediente.calorias}}</td>
+                        <td>{{ingrediente.proteinas}}</td>
+                        <td>{{ingrediente.hidratos}}</td>
+                        <td>{{ingrediente.grasas}}</td>
+                        <td>{{ingrediente.fibra}}</td>
+                        <td>{{ingrediente.sal}}</td>
+                        <td>{{ingrediente.gramosPlato}}</td>
+                        <td>
+                            <a href="javascript:void(0)" title="Editar" (click)="editarIngrediente(ingrediente.id)">
+                                <i class="fa fa-edit fa-2x" style="color: black;"></i>
+                            </a>
+                            &nbsp;&nbsp;
+                            <a href="javascript:void(0)" title="Eliminar" (click)="eliminarIngrediente(ingrediente.id)">
+                                <i class="fa fa-trash-o fa-2x" style="color: black;"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

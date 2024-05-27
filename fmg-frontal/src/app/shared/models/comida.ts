@@ -1,7 +1,7 @@
-import { ListaIngredientesComida } from "./lista-ingredientes-comida";
+import { ListaIngredientesComida } from "./lista-comida-ingredientes";
 import { Macros } from "./macros";
 
-export interface ListarComida {
+export interface Comida {
     id: string;
     nombre: string;
     ingredientes: ListaIngredientesComida[];

@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{ title }}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-anadir-ingrediente></app-anadir-ingrediente>
+    <!-- 
+        modificar el componente de añadir para que permita input con la info del ingrediente a modificar
+        adaptar el tamaño del modal
+        añadir lógica para tirar evento hacia arriba y aplicar la lógica de guardado
+            valorar si debe estar también en el comp de añadir
+            valorar renombrar comp de añadir a algo entre añadir y editar
+     -->
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cerrar</button>
+  </div>

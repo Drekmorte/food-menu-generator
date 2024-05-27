@@ -1,0 +1,26 @@
+[{
+    "id": 1,
+    "nombre": "Anchoas",
+    "tipoAlimento": "Carne",
+    "calorias": 165,
+    "proteinas": 31,
+    "hidratos": 0,
+    "grasas": 3.6,
+    "fibra": 0,
+    "sal": 0.74,
+    "gramosPlato": 100
+  },
+  {
+    "id": 2,
+    "nombre": "Avena",
+    "tipoAlimento": "Desayuno",
+    "calorias": 375,
+    "proteinas": 14,
+    "hidratos": 54,
+    "grasas": 3.6,
+    "fibra": 0,
+    "sal": 0.74,
+    "gramosPlato": 100
+  }
+]
+  
