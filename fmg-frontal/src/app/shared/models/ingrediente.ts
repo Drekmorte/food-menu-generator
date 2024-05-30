@@ -1,7 +1,7 @@
 export interface Ingrediente {
     id: number;
     nombre: string;
-    tipoAlimento: string;
+    tipoIngrediente: string;
     calorias: number;
     proteinas: number;
     hidratos: number;

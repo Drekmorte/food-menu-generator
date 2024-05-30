@@ -1,7 +1,7 @@
 [{
     "id": 1,
     "nombre": "Anchoas",
-    "tipoAlimento": "Carne",
+    "tipoIngrediente": "Carne",
     "calorias": 165,
     "proteinas": 31,
     "hidratos": 0,
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "nombre": "Avena",
-    "tipoAlimento": "Desayuno",
+    "tipoIngrediente": "Desayuno",
     "calorias": 375,
     "proteinas": 14,
     "hidratos": 54,

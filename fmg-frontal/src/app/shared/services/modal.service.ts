@@ -14,15 +14,19 @@ export class ModalService {
 
   show(component: any, title: string, ingrediente: Ingrediente): Observable<string> {
     const modalInfo: any = this.bsModalRef;
+
     const initialState: ModalOptions = {
       initialState: {
         title,
         ingrediente: ingrediente,
-        modalInfo // Probablemente no sirva para nada y haya que eliminarlo
+        modalInfo, // Probablemente no sirva para nada y haya que eliminarlo,
+
       }
     };
 
     this.bsModalRef = this.bsModalService.show(component, initialState);
+
+    this.bsModalRef.setClass('modal-test');
 
     return new Observable<string>(this.getAlertaSubscriber());
   }

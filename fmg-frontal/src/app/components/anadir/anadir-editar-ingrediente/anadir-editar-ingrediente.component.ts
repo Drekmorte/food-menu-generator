@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AnadirService } from '../../../shared/services/anadir.service';
@@ -8,13 +8,16 @@ import { AnadirIngrediente, AnadirIngredienteHelper } from '../../../shared/mode
 import { AlertsService } from '../../../shared/services/alerts.service';
 
 @Component({
-  selector: 'app-anadir-ingrediente',
+  selector: 'app-anadir-editar-ingrediente',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
-  templateUrl: './anadir-ingrediente.component.html',
-  styleUrl: './anadir-ingrediente.component.css'
+  templateUrl: './anadir-editar-ingrediente.component.html',
+  styleUrl: './anadir-editar-ingrediente.component.css'
 })
-export class AnadirIngredienteComponent implements OnInit {
+export class AnadirEditarIngredienteComponent implements OnInit {
+
+  @Input() ingredienteAEditar?: FormGroup;
+  @Output() formChanged = new EventEmitter<any>();
 
   formulario: FormGroup;
   public $subscription: Subscription;
@@ -27,7 +30,7 @@ export class AnadirIngredienteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formulario = this.fb.group({
+    this.formulario = this.ingredienteAEditar ?? this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       tipoingrediente: ['', Validators.required],
       calorias: ['', Validators.required],
@@ -38,6 +41,12 @@ export class AnadirIngredienteComponent implements OnInit {
       sal: ['', Validators.required],
       gramos: ['', Validators.required],
     });
+
+    if (this.ingredienteAEditar) {
+      this.ingredienteAEditar.valueChanges.subscribe(value => {
+        this.formChanged.emit(value);
+      });
+    }
   }
 
   // TODO

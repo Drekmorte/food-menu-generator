@@ -25,21 +25,24 @@
             <div class="col-sm-2">
                 <label>
                     <label class="form-label">Calorías</label>
-                    <input formControlName="calorias" type="number" class="form-control" placeholder="Introduce las calorías" />
+                    <input formControlName="calorias" type="number" class="form-control"
+                        placeholder="Introduce las calorías" />
                 </label>
             </div>
 
             <div class="col-sm-2">
                 <label>
                     <label class="form-label">Proteinas</label>
-                    <input formControlName="proteinas" type="number" class="form-control" placeholder="Introduce las proteínas" />
+                    <input formControlName="proteinas" type="number" class="form-control"
+                        placeholder="Introduce las proteínas" />
                 </label>
             </div>
 
             <div class="col-sm-2">
                 <label>
                     <label class="form-label">Hidratos</label>
-                    <input formControlName="hidratos" type="number" class="form-control" placeholder="Introduce los hidratos" />
+                    <input formControlName="hidratos" type="number" class="form-control"
+                        placeholder="Introduce los hidratos" />
                 </label>
             </div>
 
@@ -50,14 +53,16 @@
             <div class="col-sm-2">
                 <label>
                     <label class="form-label">Grasa</label>
-                    <input formControlName="grasas" type="number" class="form-control" placeholder="Introduce las grasas" />
+                    <input formControlName="grasas" type="number" class="form-control"
+                        placeholder="Introduce las grasas" />
                 </label>
             </div>
 
             <div class="col-sm-2">
                 <label>
                     <label class="form-label">Fibra</label>
-                    <input formControlName="fibra" type="number" class="form-control" placeholder="Introduce la fibra" />
+                    <input formControlName="fibra" type="number" class="form-control"
+                        placeholder="Introduce la fibra" />
                 </label>
             </div>
 
@@ -71,16 +76,20 @@
             <div class="col-sm-2">
                 <label>
                     <label class="form-label">Gramos</label>
-                    <input formControlName="gramos" type="number" class="form-control" placeholder="Gramos por cada 100g" />
+                    <input formControlName="gramos" type="number" class="form-control"
+                        placeholder="Gramos por cada 100g" />
                 </label>
             </div>
 
         </div>
 
-        <div class="row" style="padding-top: 20px;">
-            <div class="col">
-                <button type="submit" class="btn btn-primary boton-guardar" [disabled]="!formulario.valid">Guardar</button>
+        <ng-container *ngIf="!ingredienteAEditar">
+            <div class="row" style="padding-top: 20px;">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary boton-guardar"
+                        [disabled]="!formulario.valid">Guardar</button>
+                </div>
             </div>
-        </div>
+        </ng-container>
     </div>
 </form>

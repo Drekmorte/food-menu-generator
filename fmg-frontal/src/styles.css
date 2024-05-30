@@ -22,3 +22,11 @@ body {
     border-color: #378be6;
     /* #4e97e6 */
 }
+
+.boton-cerrar {
+    font-size: 14px;
+}
+
+.modal-test {
+    max-width: 1275px !important;
+}

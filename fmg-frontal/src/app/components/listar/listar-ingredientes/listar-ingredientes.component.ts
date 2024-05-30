@@ -44,7 +44,9 @@ export class ListarIngredientesComponent implements OnInit {
   }
 
   editarIngrediente(idIngrediente: number) {
-    this.modalService.show(EditarIngredienteComponent, "Editar ingrediente", this.listaIngredientes[idIngrediente]).subscribe(
+    const ingrediente: Ingrediente = this.listaIngredientes.filter(x => x.id == idIngrediente).reduce(x => x);
+    
+    this.modalService.show(EditarIngredienteComponent, "Editar ingrediente", ingrediente).subscribe(
       result => {
 
       },
