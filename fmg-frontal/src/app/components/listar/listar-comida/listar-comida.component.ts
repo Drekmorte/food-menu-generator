@@ -16,14 +16,14 @@ import { PieChartComponent } from '../../../shared/components/pie-chart/pie-char
 })
 export class ListarComidaComponent implements OnInit {
 
-  public $subscription: Subscription;
+  public $subscriptionGetComidas: Subscription;
 
   listaComidas : Comida[];
   
   constructor(private listarService: ListarService) 
   {
     this.listaComidas = [];
-    this.$subscription = Subscription.EMPTY;
+    this.$subscriptionGetComidas = Subscription.EMPTY;
   }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class ListarComidaComponent implements OnInit {
   }
 
   getComidas() {
-    this.$subscription = this.listarService.getComidas().subscribe(
+    this.$subscriptionGetComidas = this.listarService.getComidas().subscribe(
       (response: HttpResponse<any>) => {
         if (response)
           this.listaComidas = response.body;
@@ -46,5 +46,9 @@ export class ListarComidaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.$subscriptionGetComidas.unsubscribe();
   }
 }

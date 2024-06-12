@@ -10,5 +10,4 @@ import { MenuComponent } from './components/menu/menu.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'fmg-frontal';
 }

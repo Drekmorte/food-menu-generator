@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AnadirService } from '../../../shared/services/anadir.service';
@@ -14,19 +14,23 @@ import { AlertsService } from '../../../shared/services/alerts.service';
   templateUrl: './anadir-editar-ingrediente.component.html',
   styleUrl: './anadir-editar-ingrediente.component.css'
 })
-export class AnadirEditarIngredienteComponent implements OnInit {
+export class AnadirEditarIngredienteComponent implements OnInit, OnDestroy {
 
   @Input() ingredienteAEditar?: FormGroup;
   @Output() formChanged = new EventEmitter<any>();
 
   formulario: FormGroup;
-  public $subscription: Subscription;
+  public $subscriptionPostIngrediente: Subscription;
+  public $subscriptionForm: Subscription;
+
+  private isEmittingEvent = false;
 
   constructor(private fb: FormBuilder,
     private anadirService: AnadirService,
     private alertsService: AlertsService) {
     this.formulario = new FormGroup({});
-    this.$subscription = Subscription.EMPTY;
+    this.$subscriptionPostIngrediente = Subscription.EMPTY;
+    this.$subscriptionForm = Subscription.EMPTY;
   }
 
   ngOnInit() {
@@ -43,9 +47,7 @@ export class AnadirEditarIngredienteComponent implements OnInit {
     });
 
     if (this.ingredienteAEditar) {
-      this.ingredienteAEditar.valueChanges.subscribe(value => {
-        this.formChanged.emit(value);
-      });
+      this.subscribeToFormChanges(this.ingredienteAEditar);
     }
   }
 
@@ -54,11 +56,11 @@ export class AnadirEditarIngredienteComponent implements OnInit {
     if (form.valid) {
       const nuevoingrediente: AnadirIngrediente = AnadirIngredienteHelper.toApi(form);
 
-      this.$subscription = this.anadirService.postAnadirIngrediente(nuevoingrediente).subscribe(
+      this.$subscriptionPostIngrediente = this.anadirService.anadirIngrediente(nuevoingrediente).subscribe(
         (response: HttpResponse<any>) => {
           if (response)
             console.log(response);
-            this.alertsService.showSuccess("ingrediente añadido");
+          this.alertsService.showSuccess("ingrediente añadido");
         },
         (error) => {
           console.log(error);
@@ -69,5 +71,24 @@ export class AnadirEditarIngredienteComponent implements OnInit {
     else {
       console.log("El formulario no es válido");
     }
+  }
+
+  subscribeToFormChanges(ingredienteAEditar: FormGroup) {
+    this.$subscriptionForm = ingredienteAEditar.valueChanges.subscribe(value => {
+      if (!this.isEmittingEvent) {
+        this.onFormValueChange(value);
+      }
+    });
+  }
+
+  onFormValueChange(value: any) {
+    this.isEmittingEvent = true;
+    this.formChanged.emit(value);
+    this.isEmittingEvent = false;
+  }
+
+  ngOnDestroy() {
+    this.$subscriptionPostIngrediente.unsubscribe();
+    this.$subscriptionForm.unsubscribe();
   }
 }

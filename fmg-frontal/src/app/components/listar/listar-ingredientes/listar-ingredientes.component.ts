@@ -17,14 +17,16 @@ import { EditarIngredienteComponent } from '../../../shared/components/modals/ed
 })
 export class ListarIngredientesComponent implements OnInit {
 
-  public $subscription: Subscription;
+  public $subscriptionGetIngredientes: Subscription;
+  public $subscriptionModal: Subscription;
 
   listaIngredientes: Ingrediente[];
 
   constructor(private listarService: ListarService, private modalService: ModalService) {
     // TODO: borrar
     this.listaIngredientes = MOCK_ListarIngredientes;
-    this.$subscription = Subscription.EMPTY;
+    this.$subscriptionGetIngredientes = Subscription.EMPTY;
+    this.$subscriptionModal = Subscription.EMPTY;
   }
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class ListarIngredientesComponent implements OnInit {
   }
 
   getIngredientes() {
-    this.$subscription = this.listarService.getIngredientes().subscribe(
+    this.$subscriptionGetIngredientes = this.listarService.getIngredientes().subscribe(
       (response: HttpResponse<any>) => {
         if (response)
           this.listaIngredientes = response.body;
@@ -60,6 +62,11 @@ export class ListarIngredientesComponent implements OnInit {
 
   eliminarIngrediente(idIngrediente: number) {
 
+  }
+
+  ngOnDestroy() {
+    this.$subscriptionGetIngredientes.unsubscribe();
+    this.$subscriptionModal.unsubscribe();
   }
 
 }

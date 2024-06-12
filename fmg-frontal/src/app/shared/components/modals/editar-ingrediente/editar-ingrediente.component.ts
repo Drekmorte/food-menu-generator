@@ -25,12 +25,12 @@ export class EditarIngredienteComponent implements OnInit {
   ingredienteAEditarFG: FormGroup;
   ingredienteAEditar?: Ingrediente;
 
-  public $subscription: Subscription;
+  public $subscriptionPostIngredientes: Subscription;
 
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder, private editarService: EditarService,
     private alertsService: AlertsService) {
     this.ingredienteAEditarFG = new FormGroup({});
-    this.$subscription = Subscription.EMPTY;
+    this.$subscriptionPostIngredientes = Subscription.EMPTY;
   }
 
   ngOnInit() {
@@ -55,7 +55,7 @@ export class EditarIngredienteComponent implements OnInit {
   editarIngrediente() {
     if (this.ingredienteAEditarFG.valid && this.ingredienteAEditar) {
 
-      this.$subscription = this.editarService.postEditarIngrediente(this.ingredienteAEditar).subscribe(
+      this.$subscriptionPostIngredientes = this.editarService.postEditarIngrediente(this.ingredienteAEditar).subscribe(
         (response: HttpResponse<any>) => {
           if (response)
             console.log(response);
@@ -70,6 +70,10 @@ export class EditarIngredienteComponent implements OnInit {
     else {
       console.log("El formulario no es válido");
     }
+  }
+
+  ngOnDestroy() {
+    this.$subscriptionPostIngredientes.unsubscribe();
   }
 }
 

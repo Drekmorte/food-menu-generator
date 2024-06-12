@@ -17,7 +17,7 @@ import { AnadirComida, AnadirComidaHelper } from '../../../shared/models/anadir-
 })
 export class AnadirComidaComponent implements OnInit {
 
-  public $subscription: Subscription;
+  public $subscriptionPostComida: Subscription;
   nombreComida: string = "";
   listaIngredientes: IngredienteCantidad[] = [];
   formularioValidado: boolean;
@@ -25,7 +25,7 @@ export class AnadirComidaComponent implements OnInit {
   constructor(private anadirService: AnadirService,
     private alertsService: AlertsService) 
   {
-    this.$subscription = Subscription.EMPTY;
+    this.$subscriptionPostComida = Subscription.EMPTY;
     this.formularioValidado = false;
   }
 
@@ -37,7 +37,7 @@ export class AnadirComidaComponent implements OnInit {
     if (this.formularioValidado) {
       const nuevaComida: AnadirComida = AnadirComidaHelper.toApi(this.nombreComida, this.listaIngredientes);
 
-      this.$subscription = this.anadirService.postAnadirComida(nuevaComida).subscribe(
+      this.$subscriptionPostComida = this.anadirService.anadirComida(nuevaComida).subscribe(
         (response: HttpResponse<any>) => {
           if (response)
             console.log(response);
@@ -89,6 +89,10 @@ export class AnadirComidaComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  ngOnDestroy() {
+    this.$subscriptionPostComida.unsubscribe();
   }
 
 }
