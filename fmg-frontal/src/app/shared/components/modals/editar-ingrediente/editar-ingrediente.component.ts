@@ -27,7 +27,7 @@ export class EditarIngredienteComponent implements OnInit {
 
   public $subscriptionPostIngredientes: Subscription;
 
-  constructor(public bsModalRef: BsModalRef, private fb: FormBuilder, private editarService: EditarService,
+  constructor(private fb: FormBuilder, private editarService: EditarService,
     private alertsService: AlertsService) {
     this.ingredienteAEditarFG = new FormGroup({});
     this.$subscriptionPostIngredientes = Subscription.EMPTY;
@@ -48,6 +48,7 @@ export class EditarIngredienteComponent implements OnInit {
   }
 
   onFormChanged(value: Ingrediente) {
+    console.log("🚀 ~ EditarIngredienteComponent ~ onFormChanged ~ value:", value);
     this.ingredienteAEditarFG.setValue(value);
     this.ingredienteAEditar = value;
   }
@@ -55,15 +56,19 @@ export class EditarIngredienteComponent implements OnInit {
   editarIngrediente() {
     if (this.ingredienteAEditarFG.valid && this.ingredienteAEditar) {
 
-      this.$subscriptionPostIngredientes = this.editarService.postEditarIngrediente(this.ingredienteAEditar).subscribe(
+      this.$subscriptionPostIngredientes = this.editarService.editarIngrediente(this.ingredienteAEditar.id).subscribe(
         (response: HttpResponse<any>) => {
           if (response)
             console.log(response);
-          this.alertsService.showSuccess("ingrediente añadido");
+
+          if (response.body)
+            this.alertsService.showSuccess("Ingrediente modificado");
+          else 
+            this.alertsService.showError(response.statusText, "Ha habido un error al modificar el ingrediente");
         },
         (error) => {
           console.log(error);
-          this.alertsService.showError(error, "Ha habido un error al añadir el ingrediente");
+          this.alertsService.showError(error, "Ha habido un error al modificar el ingrediente");
         }
       );
     }
@@ -76,10 +81,3 @@ export class EditarIngredienteComponent implements OnInit {
     this.$subscriptionPostIngredientes.unsubscribe();
   }
 }
-
-/*
-  Si hay cambio en el hijo, comunicarlo al padre
-  El padre lo recibe y actualiza su variable
-  Cuando se le dé a Guardar, se hace el post al back
-    El comp de añadir-editar no edita el ingrediente
-*/

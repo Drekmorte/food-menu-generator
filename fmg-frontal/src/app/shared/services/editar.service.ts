@@ -1,30 +1,27 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Ingrediente } from '../models/ingrediente';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditarService {
-
   
-  private urlBase : string = 'https://localhost:7208/';
+  private urlBase : string = '/editar/';
 
-  private urlingrediente : string = 'WeatherForecast';
+  private urlIngrediente : string = this.urlBase + 'ingrediente';
+  private urlComida : string = this.urlBase + 'comida';
+  private urlMenu : string = this.urlBase + 'menu';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
 
   }
 
-  public postEditarIngrediente(ingrediente: Ingrediente): Observable<any> {
-    return this.http.post(this.urlBase + this.urlingrediente, ingrediente).pipe(
-      catchError(error => {
-        return of(error);
-      }),
-      map((fullResponse: HttpResponse<Object> | HttpErrorResponse) => {
-        return fullResponse;
-      }));
+  public editarIngrediente(idIngrediente:number): Observable<any> {
+    return this.http.put(this.urlIngrediente + '/' + idIngrediente, null);
   }
 
+  public editarComida(idComida:number): Observable<any> {
+    return this.http.put(this.urlComida + '/' + idComida, null);
+  }
 }

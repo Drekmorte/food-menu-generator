@@ -6,17 +6,8 @@
   </div>
   <div class="modal-body">
     <app-anadir-editar-ingrediente [ingredienteAEditar]="ingredienteAEditarFG" (formChanged)="onFormChanged($event)" ></app-anadir-editar-ingrediente>
-    <!-- 
-        +modificar el componente de añadir para que permita input con la info del ingrediente a modificar
-        +adaptar el tamaño del modal
-        añadir lógica para tirar evento hacia arriba y aplicar la lógica de guardado
-            valorar si debe estar también en el comp de añadir
-         +   valorar renombrar comp de añadir a algo entre añadir y editar
-     -->
-
-
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary boton-guardar" (click)="bsModalRef.hide()">Guardar</button>
+    <button type="button" class="btn btn-primary boton-guardar" (click)="editarIngrediente()">Guardar</button>
     <button type="button" class="btn btn-danger boton-cerrar" (click)="bsModalRef.hide()">Cerrar</button>
   </div>
