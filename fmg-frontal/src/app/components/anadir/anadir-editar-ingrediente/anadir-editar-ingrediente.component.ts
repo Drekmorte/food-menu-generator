@@ -6,6 +6,7 @@ import { AnadirService } from '../../../shared/services/anadir.service';
 import { HttpClientModule, HttpResponse } from '@angular/common/http';
 import { AnadirIngrediente, AnadirIngredienteHelper } from '../../../shared/models/anadir-ingrediente';
 import { AlertsService } from '../../../shared/services/alerts.service';
+import { UtilsService } from '../../../shared/services/utils.service';
 
 @Component({
   selector: 'app-anadir-editar-ingrediente',
@@ -22,15 +23,20 @@ export class AnadirEditarIngredienteComponent implements OnInit, OnDestroy {
   formulario: FormGroup;
   public $subscriptionPostIngrediente: Subscription;
   public $subscriptionForm: Subscription;
+  public $subscriptionGetTiposIngredientes: Subscription;
 
   private isEmittingEvent = false;
 
+  listaTiposAlimentos : any;
+
   constructor(private fb: FormBuilder,
     private anadirService: AnadirService,
-    private alertsService: AlertsService) {
+    private alertsService: AlertsService, 
+    private utilsService: UtilsService) {
     this.formulario = new FormGroup({});
     this.$subscriptionPostIngrediente = Subscription.EMPTY;
     this.$subscriptionForm = Subscription.EMPTY;
+    this.$subscriptionGetTiposIngredientes = Subscription.EMPTY;
   }
 
   ngOnInit() {
@@ -49,6 +55,8 @@ export class AnadirEditarIngredienteComponent implements OnInit, OnDestroy {
     if (this.ingredienteAEditar) {
       this.subscribeToFormChanges(this.ingredienteAEditar);
     }
+
+    this.getTiposAlimentos();
   }
 
   // TODO
@@ -90,5 +98,21 @@ export class AnadirEditarIngredienteComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.$subscriptionPostIngrediente.unsubscribe();
     this.$subscriptionForm.unsubscribe();
+  }
+
+  getTiposAlimentos() {
+    this.listaTiposAlimentos = this.utilsService.tiposAlimentos();
+    // this.$subscriptionGetTiposIngredientes = this.utilsService.tiposAlimentos().subscribe(
+    //   (result : any) => {
+    //     console.log("🚀 ~ AnadirComidaComponent ~ getTiposAlimentos ~ result:", result);
+    //     this.listaTiposAlimentos = result;
+    //   },
+    //   (error : any) => {
+    //   console.log("🚀 ~ AnadirComidaComponent ~ getTiposAlimentos ~ error:", error);
+
+    //   },
+    //   () => {
+
+    //   });
   }
 }

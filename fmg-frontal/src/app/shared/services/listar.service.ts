@@ -1,39 +1,31 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListarService {
 
-  private urlBase : string = 'https://localhost:7208/';
+  private urlBase : string = '/listar/';
 
-  private urlingrediente : string = 'WeatherForecast';
+  private urlIngrediente : string = this.urlBase + 'ingrediente';
+  private urlComida : string = this.urlBase + 'comida';
+  private urlMenu : string = this.urlBase + 'menu';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpService) {
 
-  }
-
-  public getComidas(): Observable<any> {
-    return this.http.get(this.urlBase + this.urlingrediente).pipe(
-      catchError(error => {
-        return of(error);
-      }),
-      map((fullResponse: HttpResponse<Object> | HttpErrorResponse) => {
-        return fullResponse;
-      }));
   }
 
   public getIngredientes(): Observable<any> {
-    return this.http.get(this.urlBase + this.urlingrediente).pipe(
-      catchError(error => {
-        return of(error);
-      }),
-      map((fullResponse: HttpResponse<Object> | HttpErrorResponse) => {
-        return fullResponse;
-      }));
+    return this.http.get(this.urlIngrediente);
   }
 
+  public getComidas(): Observable<any> {
+    return this.http.get(this.urlComida);
+  }
 
+  public getMenu(): Observable<any> {
+    return this.http.get(this.urlMenu);
+  }
 }

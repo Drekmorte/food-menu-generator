@@ -13,12 +13,10 @@
             <div class="col-sm-2">
                 <label>
                     <label class="form-label">Tipo de ingrediente</label>
-                    <select formControlName="tipoingrediente" class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    
+                    <select formControlName="tipoingrediente" class="form-select" aria-label="Tipo de ingrediente">
+                        <option *ngFor="let item of listaTiposAlimentos" [value]="item">{{ item.nombre }}</option>
+                      </select>
                 </label>
             </div>
 

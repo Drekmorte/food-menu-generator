@@ -27,7 +27,7 @@ export class EditarIngredienteComponent implements OnInit {
 
   public $subscriptionPostIngredientes: Subscription;
 
-  constructor(private fb: FormBuilder, private editarService: EditarService,
+  constructor(public bsModalRef: BsModalRef, private fb: FormBuilder, private editarService: EditarService,
     private alertsService: AlertsService) {
     this.ingredienteAEditarFG = new FormGroup({});
     this.$subscriptionPostIngredientes = Subscription.EMPTY;

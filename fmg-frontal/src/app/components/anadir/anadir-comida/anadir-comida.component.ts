@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AnadirService } from '../../../shared/services/anadir.service';
@@ -15,9 +15,10 @@ import { AnadirComida, AnadirComidaHelper } from '../../../shared/models/anadir-
   templateUrl: './anadir-comida.component.html',
   styleUrl: './anadir-comida.component.css'
 })
-export class AnadirComidaComponent implements OnInit {
+export class AnadirComidaComponent implements OnInit, OnDestroy {
 
   public $subscriptionPostComida: Subscription;
+
   nombreComida: string = "";
   listaIngredientes: IngredienteCantidad[] = [];
   formularioValidado: boolean;
@@ -31,6 +32,10 @@ export class AnadirComidaComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ngOnDestroy() {
+    this.$subscriptionPostComida.unsubscribe();
   }
 
   onSubmit() {
@@ -91,12 +96,7 @@ export class AnadirComidaComponent implements OnInit {
     return true;
   }
 
-  ngOnDestroy() {
-    this.$subscriptionPostComida.unsubscribe();
-  }
+
+
 
 }
-
-// cuando haya un cambio se actualizan los dos arrays
-// cuando se actualicen los dos arrays, se actualiza el array de tableRows con el valor correspondiente
-// cuando se le de a onSubmit, que pase los valores de tableRows al de this.formulario
